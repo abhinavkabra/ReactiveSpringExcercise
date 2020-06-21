@@ -59,4 +59,14 @@ public class FluxAndMonoControllerTests {
 				});
 	}
 	
+	
+	@Test
+	public void textFluxInfiniteStreamUsingStepVerifier() {
+		Flux<Long> fluxBody = webTestClient.get().uri("/flux-stream").accept(MediaType.APPLICATION_STREAM_JSON).exchange()
+				.expectStatus().isOk().returnResult(Long.class).getResponseBody();
+		StepVerifier.create(fluxBody).expectSubscription().expectNext(0L).expectNext(1L).expectNext(2L).expectNext(3L).expectNext(4L).thenCancel()
+				.verify();
+	}
+	
+	
 }
