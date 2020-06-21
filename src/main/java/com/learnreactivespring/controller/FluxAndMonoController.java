@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RestController
 public class FluxAndMonoController {
@@ -21,4 +22,8 @@ public class FluxAndMonoController {
 		return  Flux.interval(Duration.ofSeconds(1L));
 	}
 	
+	@GetMapping(value = "/mono", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Mono<String> getMonoAPI(){
+		return  Mono.just("Abhinav Kabra");
+	}
 }
