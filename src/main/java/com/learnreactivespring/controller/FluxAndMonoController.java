@@ -13,7 +13,7 @@ public class FluxAndMonoController {
 
 	@GetMapping(value = "/flux", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Flux<Integer> getFlux(){
-		return  Flux.just(1,2,3,4).delayElements(Duration.ofSeconds(1L));
+		return  Flux.just(1,2,3,4);
 	}
 	
 	@GetMapping(value = "/flux-stream", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
