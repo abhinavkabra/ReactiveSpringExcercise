@@ -13,7 +13,9 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 @SpringBootTest
+
 @RunWith(SpringRunner.class)
+
 @AutoConfigureWebTestClient
 public class FunctionHandlerTest {
 
@@ -24,15 +26,14 @@ public class FunctionHandlerTest {
 	public void testFunctionFlux() {
 		Flux<Integer> responseBody = webTestClient.get().uri("/flux-function").accept(MediaType.APPLICATION_JSON_UTF8)
 				.exchange().expectStatus().isOk().returnResult(Integer.class).getResponseBody();
-		StepVerifier.create(responseBody).expectSubscription().expectNext(1,2,3)
-				.verifyComplete();
+		StepVerifier.create(responseBody).expectSubscription().expectNext(1, 2, 3).verifyComplete();
 	}
-	
+
 	@Test
 	public void testFunctionMono() {
-		webTestClient.get().uri("/mono-function").accept(MediaType.APPLICATION_JSON_UTF8)
-				.exchange().expectStatus().isOk().expectBody(String.class).value(s -> s.equalsIgnoreCase("Abhinav"));
-		
+		webTestClient.get().uri("/mono-function").accept(MediaType.APPLICATION_JSON_UTF8).exchange().expectStatus()
+				.isOk().expectBody(String.class).value(s -> s.equalsIgnoreCase("Abhinav"));
+
 	}
 
 }

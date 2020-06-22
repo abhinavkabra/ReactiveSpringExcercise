@@ -20,6 +20,7 @@ import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 @RunWith(SpringRunner.class)
+
 @WebFluxTest
 public class FluxAndMonoControllerTests {
 
@@ -69,18 +70,13 @@ public class FluxAndMonoControllerTests {
 		StepVerifier.create(fluxBody).expectSubscription().expectNext(0L).expectNext(1L).expectNext(2L).expectNext(3L)
 				.expectNext(4L).thenCancel().verify();
 	}
-	
+
 	@Test
 	public void textMonoUsingStepVerifier() {
-							  webTestClient.get().uri("/mono").accept(MediaType.APPLICATION_JSON_UTF8).exchange()
-				.expectStatus().isOk().expectBody(String.class).value(s -> {
+		webTestClient.get().uri("/mono").accept(MediaType.APPLICATION_JSON_UTF8).exchange().expectStatus().isOk()
+				.expectBody(String.class).value(s -> {
 					s.equalsIgnoreCase("Abhinav");
 				});
-	
-	
-	
-		/*StepVerifier.create(monoBody).expectSubscription().expectNext(1).expectNext(2).expectNext(3).expectNext(4)
-				.verifyComplete();*/
 	}
 
 }
