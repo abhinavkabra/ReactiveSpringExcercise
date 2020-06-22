@@ -21,8 +21,8 @@ import reactor.test.StepVerifier;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@DirtiesContext
 @AutoConfigureWebTestClient
+@DirtiesContext
 public class FluxAndMonoControllerTests {
 
 	@Autowired
